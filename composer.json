@@ -1,0 +1,27 @@
+{
+    "name": "imahmood/persian-text",
+    "description": "A lightweight library for persian language localization.",
+    "type": "library",
+    "keyword": [
+        "persian",
+        "farsi",
+        "persian string",
+        "persian text"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mahmood Dehghani",
+            "email": "mahmood.public@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "ext-intl": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "imahmood\\": "src"
+        }
+    }
+}
