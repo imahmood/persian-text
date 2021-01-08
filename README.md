@@ -32,7 +32,7 @@ output: ۰۱۲۳۴۵۶۷۸۹ - ۰۱۲۳۴۵۶۷۸۹ - ي ك ة
 echo PersianText::toEnglishNumber($string);
 output: 0123456789 - 0123456789 - ي ك ة
 
-echo PersianText::money('123456789', ',');
+echo PersianText::money('123456789');
 output: 123٬456٬789
 
 echo PersianText::asSpellout(123456);
