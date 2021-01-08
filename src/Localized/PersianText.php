@@ -1,20 +1,39 @@
 <?php
 namespace imahmood\Localized;
 
+use InvalidArgumentException;
 use NumberFormatter;
 
 class PersianText
 {
-
+    /**
+     * @var string[]
+     */
     protected static $enNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+    /**
+     * @var string[]
+     */
     protected static $arNumbers = ['۰', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+
+    /**
+     * @var string[]
+     */
     protected static $faNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+
+    /**
+     * @var string[]
+     */
     protected static $arChars = ['ي', 'ى', 'ك', 'ة'];
+
+    /**
+     * @var string[]
+     */
     protected static $faChars = ['ی', 'ی', 'ک', 'ه'];
 
     /**
-     * @param mixed $string
-     * @return string|array
+     * @param string|int|float $string The string being formatted.
+     * @return string|int|float
      */
     public static function text($string)
     {
@@ -23,8 +42,8 @@ class PersianText
     }
 
     /**
-     * @param mixed $string
-     * @return string|array
+     * @param string|int|float $string The string being formatted.
+     * @return string|int|float
      */
     public static function onlyArabicChars($string)
     {
@@ -33,8 +52,8 @@ class PersianText
     }
 
     /**
-     * @param mixed $string
-     * @return string|array
+     * @param string|int|float $string The string being formatted.
+     * @return string|int|float
      */
     public static function onlyNumbers($string)
     {
@@ -43,8 +62,8 @@ class PersianText
     }
 
     /**
-     * @param mixed $string
-     * @return string|array
+     * @param string|int|float $string The string being formatted.
+     * @return string|int|float
      */
     public static function toEnglishNumber($string)
     {
@@ -53,26 +72,50 @@ class PersianText
     }
 
     /**
-     * @param float $number
-     * @param string $thousandsSep
-     * @param int $decimals
-     * @param string $decimalPoint
+     * @param mixed $number Number
+     * @param int $decimals Decimal points
+     * @param string $decimalPoint Separator for the decimal point
+     * @param string $thousandsSep Thousands separator
      * @return string
      */
-    public static function money($number, $thousandsSep = '٫', $decimals = 0, $decimalPoint = '.')
+    public static function money($number, $decimals = 0, $decimalPoint = '٫', $thousandsSep = '٬')
     {
-        return number_format($number, $decimals, $decimalPoint, $thousandsSep);
+        return number_format(static::parseValue($number), $decimals, $decimalPoint, $thousandsSep);
     }
 
     /**
-     * @param float $number
-     * @param string $locale
+     * @param mixed $number Number
+     * @param string $locale Locale
      * @return string
      */
     public static function asSpellout($number, $locale = 'fa_IR')
     {
         $formatter = new NumberFormatter($locale, NumberFormatter::SPELLOUT);
-        return $formatter->format($number);
+
+        return $formatter->format(static::parseValue($number));
+    }
+
+    /**
+     * @param mixed $value Value
+     * @return float
+     */
+    protected static function parseValue($value)
+    {
+        if (is_object($value)) {
+            if (method_exists($value, 'toFloat')) {
+                return $value->toFloat();
+            }
+
+            if (method_exists($value, '__toString')) {
+                $value = strval($value);
+            }
+        }
+
+        if (!is_numeric($value)) {
+            throw new InvalidArgumentException(sprintf('"%s" is not numeric.', $value));
+        }
+
+        return (float)$value;
     }
 
     /**
@@ -89,5 +132,4 @@ class PersianText
 
         return str_replace($search, $replace, $subject);
     }
-
 }
