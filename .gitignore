@@ -1,5 +1,11 @@
-/composer.lock
-/phpunit.xml
+/.phpunit.cache
 /vendor
-.idea
-.vscode
+composer.phar
+composer.lock
+.DS_Store
+Thumbs.db
+/phpunit.xml
+/.idea
+/.fleet
+/.vscode
+.phpunit.result.cache
