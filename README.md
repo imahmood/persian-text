@@ -1,4 +1,10 @@
 # PersianText
+
+[![Latest Stable Version](https://img.shields.io/packagist/v/imahmood/persian-text.svg?style=flat-square)](https://packagist.org/packages/imahmood/persian-text)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/imahmood/persian-text/tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/imahmood/persian-text/actions?query=workflow%3Atests+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/imahmood/persian-text.svg?style=flat-square)](https://packagist.org/packages/imahmood/persian-text)
+[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+
 PersianText is a lightweight library for persian language localization.
 
 ## Requirements
@@ -38,4 +44,4 @@ output: صد و بیست و سه هزار و چهارصد و پنجاه و شش
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
