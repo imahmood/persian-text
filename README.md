@@ -8,7 +8,7 @@
 PersianText is a lightweight library for persian language localization.
 
 ## Requirements
-* PHP 5.4 or greater
+* PHP 8.1 or greater
 * intl PHP extension
 
 ## Installation
